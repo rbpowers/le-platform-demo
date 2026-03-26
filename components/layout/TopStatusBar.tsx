@@ -172,9 +172,8 @@ export function TopStatusBar() {
       className="flex items-center justify-between px-4 shrink-0 border-b z-10 gap-4"
       style={{ height: "48px", background: "var(--sidebar-bg)", borderColor: "var(--border)" }}
     >
-      {/* Left: session + market tickers */}
+      {/* Left: session badge + market tickers (tickers hidden on mobile) */}
       <div className="flex items-center gap-3">
-        {/* Session badge */}
         <div
           className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold shrink-0"
           style={{ color: sessionCfg.color, background: sessionCfg.bg }}
@@ -186,22 +185,27 @@ export function TopStatusBar() {
           {sessionCfg.label}
         </div>
 
-        {/* SPY / IWM / VIX */}
-        {marketTickers.map((t) => <MarketPill key={t.symbol} t={t} />)}
+        {/* SPY / IWM / VIX — desktop only */}
+        <div className="hidden lg:flex items-center gap-3">
+          {marketTickers.map((t) => <MarketPill key={t.symbol} t={t} />)}
+        </div>
       </div>
 
       {/* Right: WS + clock + search */}
       <div className="flex items-center gap-3 shrink-0">
-        <ConnectionPill status={wsStatus} />
+        {/* WS pill — desktop only */}
+        <div className="hidden lg:block">
+          <ConnectionPill status={wsStatus} />
+        </div>
 
         <div className="flex items-center gap-1.5 num text-[11px]" style={{ color: "var(--text-muted)" }}>
           <Clock size={11} />
           {time} ET
         </div>
 
-        {/* Quick search */}
+        {/* Quick search — desktop only */}
         <div
-          className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border transition-all"
+          className="hidden lg:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border transition-all"
           style={{
             background: focused ? "var(--bg-card)" : "var(--bg-base)",
             borderColor: focused ? "var(--primary-bright)" : "var(--border)",

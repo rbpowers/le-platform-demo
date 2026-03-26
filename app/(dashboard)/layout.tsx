@@ -1,13 +1,18 @@
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopStatusBar } from "@/components/layout/TopStatusBar";
 import { ChartModal } from "@/components/chart/ChartModal";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { TickerProvider } from "@/lib/TickerContext";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <TickerProvider>
       <div className="flex h-screen w-screen overflow-hidden">
-        <Sidebar />
+        {/* Sidebar — desktop only */}
+        <div className="hidden lg:flex h-full">
+          <Sidebar />
+        </div>
+
         <div className="flex flex-col flex-1 min-w-0">
           <TopStatusBar />
           <main
@@ -18,8 +23,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </main>
         </div>
       </div>
-      {/* Chart modal rendered at layout level — available on all dashboard pages */}
-      <ChartModal />
+
+      {/* Chart modal — desktop only (mobile uses /chart/[ticker] page) */}
+      <div className="hidden lg:block">
+        <ChartModal />
+      </div>
+
+      {/* Mobile bottom nav */}
+      <MobileBottomNav />
     </TickerProvider>
   );
 }

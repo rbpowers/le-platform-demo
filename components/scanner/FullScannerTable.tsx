@@ -115,7 +115,7 @@ export function FullScannerTable() {
   );
 
   return (
-    <div className="flex flex-col h-full" style={{ background: "var(--bg-card)" }}>
+    <div className="flex flex-col h-full pb-16 lg:pb-0" style={{ background: "var(--bg-card)" }}>
       {/* ── Filter bar ── */}
       <div
         className="flex items-center gap-4 px-4 shrink-0 border-b flex-wrap"

@@ -21,8 +21,8 @@ function Widget({
   const accentColor = accent ?? "var(--primary-bright)";
   return (
     <div
-      className="flex flex-col h-full overflow-hidden rounded-xl border"
-      style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}
+      className="flex flex-col overflow-hidden rounded-xl border lg:h-full"
+      style={{ background: "var(--bg-card)", borderColor: "var(--border)", minHeight: "262px" }}
     >
       {/* top accent bar */}
       <div style={{ height: "2px", background: accentColor, opacity: 0.7, flexShrink: 0 }} />
@@ -54,7 +54,7 @@ function Widget({
       </div>
 
       {/* body */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-y-auto">
         {children}
       </div>
     </div>
@@ -465,7 +465,7 @@ function Form4Highlights() {
 // ─── Grid ──────────────────────────────────────────────────────────────────────
 export function HubWidgetGrid() {
   return (
-    <div className="grid grid-cols-4 grid-rows-2 h-full gap-3 p-3">
+    <div className="grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-2 lg:h-full gap-3 p-3">
       <TopMovers />
       <PreMarketGappers />
       <Day23Watch />
